@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>traffic</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="shortcut icon" th:href="@{/image/log2.png}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+<div class="hom">
+    <a th:href="@{/}"><h3>Home Page</h3></a>
+</div>
+<div class="ad">
+    <a th:href="@{/newChallanForm}"><h3>Add Challan</h3></a>
+</div>
+<div class="topic">E-Challan System Data</div>
+<div class="main_admin" id="pdf">
+    <table id="table1" border="1">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>age</th>
+            <th>Location</th>
+            <th>license_number</th>
+            <th>vehicle_number</th>
+            <th>vehicle_type</th>
+            <th>created_by</th>
+            <th>challan_type</th>
+            <th>challan_rate</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="challan_save : ${challanData}">
+            <td th:text="${challan_save.name}"></td>
+            <td th:text="${challan_save.age}"></td>
+            <td th:text="${challan_save.place}"></td>
+            <td th:text="${challan_save.license_number}"></td>
+            <td th:text="${challan_save.vehicle_number}"></td>
+            <td th:text="${challan_save.vehicle_type}"></td>
+            <td th:text="${challan_save.created_by}"></td>
+            <td th:text="${challan_save.challan_type}"></td>
+            <td th:text="${challan_save.challan_rate}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+<button class="btnprint" th:onclick="pdf()">Print</button>
+<script>
+function pdf() {
+ const element= document.getElementById("pdf");
+ var opt = {
+  margin:       1,
+  filename:     'challandata.pdf',
+  image:        { type: 'jpeg', quality: 1 },
+  html2canvas:  { scale: 2 },
+  jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
+};
+ html2pdf().set(opt)
+ .from(element)
+ .save();
+   }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>addform</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="shortcut icon" th:href="@{/image/log2.png}">
+</head>
+<body>
+
+<div class="hom">
+    <a th:href="@{/}"><h3>Home Page</h3></a>
+</div>
+<div class="ad">
+    <a th:href="@{/viewTraffic}"><h3>Traffic</h3></a>
+</div>
+<div class="head">
+    <h1>New E-Challan System Data Form</h1>
+</div>
+
+
+<div class="container">
+    <header>Registration Challan Data</header>
+
+    <form action="#" th:action="@{/saveEChallanData}" th:object="${challan_save}" method="POST">
+        <div class="form first">
+            <div class="details personal">
+                <span class="title">Personal Details</span>
+
+                <div class="fields">
+                    <div class="input-field">
+                        <label>Full Name</label>
+                        <input type="text" th:field="*{name}" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Age</label>
+                        <input type="number" th:field="*{age}" placeholder="Enter your age" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Location</label>
+                        <input type="text" th:field="*{place}" placeholder="Enter location" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label>License Number</label>
+                        <input type="number" th:field="*{license_number}"placeholder="Enter your license number" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Vehicle Number</label>
+                        <input type="text" th:field="*{vehicle_number}" placeholder="Enter vehicle number" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Vehicle Type</label>
+                        <select th:field="*{vehicle_type}">
+                            <option th:each="p :${v_type}" th:value="${p}" th:text="${p}"></option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-field">
+                        <label >Created By:</label>
+                        <select th:field="*{created_by}">
+                            <option th:each="p :${create}" th:value="${p}" th:text="${p}"></option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label >Challan type:</label>
+                        <select th:field="*{challan_type}">
+                            <option th:each="p :${type}" th:value="${p}" th:text="${p}"></option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label>Challan Rate</label>
+                        <input type="number" th:field="*{challan_rate}" placeholder="Enter Challan Rate" required>
+
+                    </div>
+                    <button class="nextBtn">
+                        Save
+                    </button>
+
+                </div>
+            </div>
+
+</div>
+    </form>
+</div>
+
+</body>
+</html>
